@@ -17,6 +17,10 @@ def get_chat_id(update):
 	chat_id = update['message']['chat']['id']
 	return chat_id
 
+def get_chat_text(update):
+	chat_id = update['message']['text']
+	return chat_id
+
 def send_mess(chat, text):
 	params = {'chat_id': chat, 'text': text}
 	response = requests.post(url + 'sendMessage', data=params)
@@ -26,7 +30,9 @@ def main():
     update_id = last_update(get_updates_json(url))['update_id']
     while True:
         if update_id == last_update(get_updates_json(url))['update_id']:
-           send_mess(get_chat_id(last_update(get_updates_json(url))), 'Second test')
+        	if get_chat_text(last_update(get_updates_json(url)) == 'Привет':
+        		send_mess(get_chat_id(last_update(get_updates_json(url))), 'Пока!')
+        	send_mess(get_chat_id(last_update(get_updates_json(url))), 'Я пока этого не знаю!')
            update_id += 1
         sleep(1)       
 
