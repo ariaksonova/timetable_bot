@@ -1,1 +1,1 @@
-web: python tmbot.py
+web: python timetable_bot/tmbot.py
